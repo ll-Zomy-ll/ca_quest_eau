@@ -1,42 +1,34 @@
 import sys
 
 
-def ca_len(arg) -> int:
-    length: int = 0
-    for i in arg:
-        length += 1
-    return length
-
-def ca_isdigit(arg: str) -> bool:
-    for i in arg:
-        if (ord(i) < 48 or ord(i) > 57):
-            return False
-    return True
-
-
-# Parsing + result display
-def main(index) -> None:
-    if index == '0':
-        print('0')
-        return
-    if index == '1':
-        print('1')
-        return
+def parsing_element(index: int) -> int:
+    if index == 0:
+        return 0
+    if index == 1:
+        return 1
     i: int = 1
     fn_1: int = 1
     fn_2: int = 0
-    while i < int(index):
+    while i < index:
         fn = fn_1 + fn_2
         fn_2 = fn_1
         fn_1 = fn
         i += 1
-    print(fn)
+    return fn
 
 
-
-# Error handling
-if __name__ == '__main__':
-    if (ca_len(sys.argv) == 2 and ca_isdigit(sys.argv[1])):
-        main(sys.argv[1])
-    else:
+def main() -> None:
+    if len(sys.argv) != 2:
         print("-1")
+        sys.exit(1)
+    if not sys.argv[1].isdigit():
+        print("-1")
+        sys.exit(1)
+    
+    element: int = parsing_element(int(sys.argv[1]))
+
+    print(element)
+
+
+if __name__ == '__main__':
+    main()

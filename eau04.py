@@ -1,19 +1,6 @@
 import sys
 
 
-def ca_len(arg) -> int:
-    length:int = 0
-    for i in arg:
-        length += 1
-    return length
-
-def ca_isdigit(arg: str) -> bool:
-    for i in arg:
-        if (ord(i) < 48 or ord(i) > 57):
-            return False
-    return True
-
-
 def generating(nbr: int) -> int:
     i: int = 1
     prime: int = 0
@@ -33,19 +20,21 @@ def generating(nbr: int) -> int:
         if (nbr + i != 1 and (nbr + i) % 2 != 0):
             i += 1
         i += 1
-    return 0
+    return -1
 
 
-def main(av: int) -> None:
-    prime: int = generating(av)
-    if prime:
-        print(prime)
-    else:
-        print("The number is too long.")
+def main() -> None:
+    if len(sys.argv) != 2:
+        print("-1")
+        sys.exit(1)
+    if not sys.argv[1].isdigit():
+        print("-1")
+        sys.exit(1)
+
+    prime: int = generating(int(sys.argv[1]))
+
+    print(prime)
 
 
 if __name__ == '__main__':
-    if (ca_len(sys.argv) == 2 and ca_isdigit(sys.argv[1])):
-        main(int(sys.argv[1]))
-    else:
-        print("-1")
+    main()

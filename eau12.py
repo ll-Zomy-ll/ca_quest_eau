@@ -13,7 +13,7 @@ def is_int(args: tuple) -> list:
         numbers.append(int(arg))
     return numbers
 
-def my_select_sort(array: list) -> list:
+def my_bubble_sort(array: list) -> list:
     new_array: list = array
     for i in range(len(array) - 1, 0, -1):
         for j in range(0, i):
@@ -35,7 +35,7 @@ def main(args: tuple) -> None:
         print('error')
         sys.exit(1)
 
-    new_array = my_select_sort(is_int(args[1:]))
+    new_array = my_bubble_sort(is_int(args[1:]))
 
     array_displaying(new_array)
 
